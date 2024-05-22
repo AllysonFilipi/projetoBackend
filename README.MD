@@ -1,14 +1,36 @@
-[![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/)
+# ToDo App
 
+Um aplicativo simples de lista de tarefas usando React no frontend e Node.js com Express no backend. O app permite adicionar, atualizar, marcar como concluída e excluir tarefas. As tarefas são armazenadas em um banco de dados MongoDB.
 
-# TO-DO App Backend
+## Funcionalidades
 
-Este projeto é o backend da aplicação de gerenciamento de tarefas desenvolvimendo em Node, Express e Mongoose.
+- Adicionar uma nova tarefa com uma data associada.
+- Atualizar o texto e a data de uma tarefa existente.
+- Marcar uma tarefa como concluída.
+- Excluir uma tarefa.
+- Exibir uma lista de tarefas com suas datas e status de conclusão.
 
+## Tecnologias Utilizadas
 
-## Autores
+### Frontend
 
-- [@renanalencar](https://www.github.com/renanalencar)
+- React
+- CSS (para estilização)
+
+### Backend
+
+- Node.js
+- Express
+- MongoDB
+- Mongoose
+
+## Instalação
+
+### Pré-requisitos
+
+- Node.js instalado
+- MongoDB Atlas ou servidor MongoDB local
+- Yarn ou npm
 
 
 ## Instalação
