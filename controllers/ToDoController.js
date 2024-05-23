@@ -1,4 +1,4 @@
-// controllers/ToDoController.js
+const moment = require('moment-timezone');
 const ToDo = require("../models/ToDoModel");
 
 const getToDo = async (req, res) => {
@@ -13,9 +13,10 @@ const getToDo = async (req, res) => {
 const saveToDo = async (req, res) => {
   const { text, date } = req.body;
   try {
+    const dateBrazil = moment.tz(date, "America/Sao_Paulo").toDate();
     const newToDo = new ToDo({
       text,
-      date,
+      date: dateBrazil,
     });
     await newToDo.save();
     res.status(201).json(newToDo);
@@ -27,7 +28,8 @@ const saveToDo = async (req, res) => {
 const updateToDo = async (req, res) => {
   const { _id, text, date } = req.body;
   try {
-    const updatedToDo = await ToDo.findByIdAndUpdate(_id, { text, date }, { new: true });
+    const dateBrazil = moment.tz(date, "America/Sao_Paulo").toDate();
+    const updatedToDo = await ToDo.findByIdAndUpdate(_id, { text, date: dateBrazil }, { new: true });
     res.status(200).json(updatedToDo);
   } catch (error) {
     res.status(500).json({ message: error.message });
