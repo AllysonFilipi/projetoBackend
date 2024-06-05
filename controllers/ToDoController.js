@@ -1,3 +1,4 @@
+//ToDoController.js
 const moment = require('moment-timezone');
 const ToDo = require("../models/ToDoModel");
 
@@ -13,7 +14,13 @@ const getToDo = async (req, res) => {
 const saveToDo = async (req, res) => {
   const { text, date } = req.body;
   try {
-    const dateBrazil = moment.tz(date, "America/Sao_Paulo").toDate();
+    const dateBrazil = moment.tz(date, "America/Sao_Paulo").startOf('day').toDate();
+    // const currentDate = moment.tz(new Date(), "America/Sao_Paulo").startOf('day').toDate();
+
+    // if (dateBrazil <= currentDate) {
+    //   return res.status(400).json({ message: "A data deve ser igual ou maior que a data atual." });
+    // }
+
     const newToDo = new ToDo({
       text,
       date: dateBrazil,
@@ -28,7 +35,13 @@ const saveToDo = async (req, res) => {
 const updateToDo = async (req, res) => {
   const { _id, text, date } = req.body;
   try {
-    const dateBrazil = moment.tz(date, "America/Sao_Paulo").toDate();
+    const dateBrazil = moment.tz(date, "America/Sao_Paulo").startOf('day').toDate();
+    // const currentDate = moment.tz(new Date(), "America/Sao_Paulo").startOf('day').toDate();
+
+    // if (dateBrazil < currentDate) {
+    //   return res.status(400).json({ message: "A data deve ser igual ou maior que a data atual." });
+    // }
+
     const updatedToDo = await ToDo.findByIdAndUpdate(_id, { text, date: dateBrazil }, { new: true });
     res.status(200).json(updatedToDo);
   } catch (error) {
